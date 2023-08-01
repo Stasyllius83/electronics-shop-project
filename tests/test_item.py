@@ -3,6 +3,7 @@ import pytest
 from src.item import Item
 
 
+# Tests
 @pytest.fixture
 def test_item():
     return Item("Смартфон", 10000, 20)
