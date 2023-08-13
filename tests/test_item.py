@@ -2,6 +2,7 @@
 import pytest
 
 from src.item import Item
+from src.pathing import Csv_path
 
 
 # Tests
@@ -53,7 +54,7 @@ def test_pay_rate():
 
 
 def test_instantiate_from_csv():
-    Item.instantiate_from_csv()
+    Item.instantiate_from_csv(Csv_path)
     assert len(Item.all) == 5
 
 
@@ -70,10 +71,11 @@ def test_string_to_number():
     assert Item.string_to_number('11.2') == 11
 
 
-def test_rer():
-    item1 = Item('Смартфон', 10000, 5)
-    assert repr(item1) == "Item('Смартфон', 10000, 5)"
+def test_repr():
+    item1 = Item('Смартфон', 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str():
+    item1 = Item('Смартфон', 10000, 20)
     assert str(item1) == 'Смартфон'

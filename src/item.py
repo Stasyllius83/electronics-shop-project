@@ -53,9 +53,9 @@ class Item:
         self.price = int(self.price * self.pay_rate)
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls, path):
         cls.all.clear()
-        with open('../src/items.csv', 'r', encoding="utf-8") as csv_file:
+        with open(path, 'r', encoding="windows-1251") as csv_file:
             csv_data: csv.DictReader = csv.DictReader(csv_file)
             for line in csv_data:
                 cls(line['name'], float(line['price']), int(line['quantity']))
