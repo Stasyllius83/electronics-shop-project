@@ -17,6 +17,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -63,3 +64,9 @@ class Item:
     @staticmethod
     def string_to_number(str_number):
         return int(float(str_number))
+
+
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise ValueError('Складывать можно только объекты Item и дочерние от них')
+        return self.quantity + other.quantity
