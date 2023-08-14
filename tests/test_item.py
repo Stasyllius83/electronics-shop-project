@@ -60,10 +60,9 @@ def test_instantiate_from_csv():
 
 
 def test_name():
-    item = Item('Смартфон', 10000, 5)
-    item.name = "Суперсмартфон"
-    assert len(item.name) <= 10
-    assert item.name == "Суперсмарт"
+    item1 = Item('Смартфон', 10000, 5)
+    with pytest.raises(ValueError):
+        item1.name = "Суперсмартфон"
 
 
 def test_string_to_number():
@@ -72,20 +71,27 @@ def test_string_to_number():
     assert Item.string_to_number('11.2') == 11
 
 
+def test_init():
+    item1 = Item("Смартфон", 10000, 20)
+    assert item1.name == "Смартфон"
+    assert item1.price == 10000
+    assert item1.quantity == 20
+
+
 def test_repr():
     item1 = Item('Смартфон', 10000, 20)
     assert repr(item1) == "Item('Смартфон', 10000, 20)"
 
 
-def test_str():
-    item1 = Item('Смартфон', 10000, 20)
-    assert str(item1) == 'Смартфон'
-
-
 def test_add():
     item1 = Item("Смартфон", 10000, 20)
-    phone1 = Phone("iPhone 14", 120000, 5, 2)
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
     with pytest.raises(ValueError):
         item1 + 10
+
+
+def test_str():
+    item1 = Item('Смартфон', 10000, 20)
+    assert str(item1) == 'Смартфон'

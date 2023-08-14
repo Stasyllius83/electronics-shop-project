@@ -35,9 +35,10 @@ class Item:
 
     @name.setter
     def name(self, name_set):
-        self.__name = name_set
-        if len(self.__name) > 10:
-            self.__name = self.__name[:10]
+        if len(name_set) >= 10:
+            raise ValueError('Более чем 10 символов в имени')
+        else:
+            self.__name = name_set
 
     def calculate_total_price(self) -> float:
         """
