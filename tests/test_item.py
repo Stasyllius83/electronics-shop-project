@@ -2,7 +2,7 @@
 import pytest
 
 from src.item import Item
-from src.pathing import Csv_path
+from src.pathing import Csv_path, No_file, Csv_test
 from src.phone import Phone
 
 
@@ -95,3 +95,9 @@ def test_add():
 def test_str():
     item1 = Item('Смартфон', 10000, 20)
     assert str(item1) == 'Смартфон'
+
+
+def test_instantiate_from_csv_test():
+    assert Item.instantiate_from_csv_test(Csv_path) is True
+    assert Item.instantiate_from_csv_test(No_file) is "Отсутствует файл items.csv"
+    assert Item.instantiate_from_csv_test(Csv_test) is "Файл items.csv поврежден"
